@@ -1,0 +1,2 @@
+emencia-django-social-aggregator
+================================
