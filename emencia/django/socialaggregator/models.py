@@ -1,6 +1,5 @@
 """Models for parrot.gallery"""
 from django.db import models
-from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 from taggit.managers import TaggableManager
@@ -32,7 +31,7 @@ class Aggregator(models.Model):
     name = models.CharField(_('name'), max_length=250)
     query = models.CharField(_('query'), max_length=250)
     social_plugin = models.IntegerField(_('social plugin'),
-                                        choices=FILETYPE_CHOICES)
+                                        choices=SOCIAL_PLUGINS)
 
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
     slug = models.SlugField(_('slug'), unique=True, max_length=100)
@@ -63,7 +62,7 @@ class Ressource(models.Model):
     author = models.CharField(_('author'), max_length=250)
     ressource_date = models.DateTimeField(_('ressource date'))
 
-    feeds = models.ManyToManyField(Feeds, verbose_name=_('feeds'))
+    feeds = models.ManyToManyField(Feed, verbose_name=_('feeds'))
     tags = TaggableManager()
 
     priority = models.IntegerField(
