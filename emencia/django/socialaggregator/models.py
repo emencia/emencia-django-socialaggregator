@@ -4,6 +4,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from taggit.managers import TaggableManager
 
+SOCIAL_PLUGINS = ((0, _('twitter')),
+                  (1, _('instagram')),
+                  (2, _('youtube')),)
 
 class Feed(models.Model):
     """Model for group ressource by feed"""
@@ -23,9 +26,6 @@ class Feed(models.Model):
 class Aggregator(models.Model):
     """Model for an social feed aggregator"""
 
-    SOCIAL_PLUGINS = ((0, _('twitter')),
-                      (1, _('instagram')),
-                      (2, _('youtube')),)
     name = models.CharField(_('name'), max_length=250)
     query = models.CharField(_('query'), max_length=250)
     social_plugin = models.IntegerField(_('social plugin'),
@@ -58,6 +58,8 @@ class Ressource(models.Model):
     author = models.CharField(_('author'), max_length=250)
     ressource_date = models.DateTimeField(_('ressource date'))
     feeds = models.ManyToManyField(Feed, verbose_name=_('feeds'))
+    social_type = models.IntegerField(_('social type'),
+                                      choices=SOCIAL_PLUGINS)
     tags = TaggableManager()
     priority = models.IntegerField(_('display priority'), default=100)
     activate = models.BooleanField(_('activate'), default=False)
