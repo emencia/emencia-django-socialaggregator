@@ -1,12 +1,17 @@
 """Models for parrot.gallery"""
 from django.db import models
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from taggit.managers import TaggableManager
 
-SOCIAL_PLUGINS = ((0, _('twitter')),
-                  (1, _('instagram')),
-                  (2, _('youtube')),)
+
+def build_social_plugins_list():
+    return [(plugin, datas["NAME"]) for plugin, datas in
+            settings.EDSA_PLUGINS.items()]
+
+SOCIAL_PLUGINS = build_social_plugins_list()
+
 
 class Feed(models.Model):
     """Model for group ressource by feed"""
