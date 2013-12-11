@@ -10,7 +10,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding field 'Ressource.social_type'
         db.add_column(u'socialaggregator_ressource', 'social_type',
-                      self.gf('django.db.models.fields.IntegerField')(default=''),
+                      self.gf('django.db.models.fields.IntegerField')(default=0),
                       keep_default=False)
 
 
