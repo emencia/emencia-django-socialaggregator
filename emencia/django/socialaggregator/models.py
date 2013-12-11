@@ -9,7 +9,6 @@ class Feed(models.Model):
     """Model for group ressource by feed"""
 
     name = models.CharField(_('name'), max_length=250)
-
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
     slug = models.SlugField(_('slug'), unique=True, max_length=100)
 
@@ -27,15 +26,12 @@ class Aggregator(models.Model):
     SOCIAL_PLUGINS = ((0, _('twitter')),
                       (1, _('instagram')),
                       (2, _('youtube')),)
-
     name = models.CharField(_('name'), max_length=250)
     query = models.CharField(_('query'), max_length=250)
     social_plugin = models.IntegerField(_('social plugin'),
                                         choices=SOCIAL_PLUGINS)
-
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
     slug = models.SlugField(_('slug'), unique=True, max_length=100)
-
     feeds = models.ManyToManyField(Feed, verbose_name=_('feeds'))
 
     def __unicode__(self):
@@ -49,11 +45,11 @@ class Aggregator(models.Model):
 class Ressource(models.Model):
     """Model representing a ressource"""
 
+    social_id = models.CharField(_('social_id'), max_length=250)
     name = models.CharField(_('name'), max_length=250)
-
+    slug = models.SlugField(_('slug'), unique=True, max_length=100)
     description = models.TextField(_('description'), blank=True)
     short_description = models.TextField(_('short description'), blank=True)
-
     image = models.ImageField(_('image'), upload_to='social_aggregator',
                               blank=True)
     thumbnail = models.ImageField(_('thumbnail'),
@@ -61,17 +57,12 @@ class Ressource(models.Model):
                                   blank=True)
     author = models.CharField(_('author'), max_length=250)
     ressource_date = models.DateTimeField(_('ressource date'))
-
     feeds = models.ManyToManyField(Feed, verbose_name=_('feeds'))
     tags = TaggableManager()
-
-    priority = models.IntegerField(
-        _('display priority'), default=100,
-        help_text=_('Set this value to 0 will hide the item'))
-
+    priority = models.IntegerField(_('display priority'), default=100)
+    activate = models.BooleanField(_('activate'), default=False)
+    favorite = models.BooleanField(_('favorite'), default=False)
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
-
-    slug = models.SlugField(_('slug'), unique=True, max_length=100)
 
     @models.permalink
     def get_absolute_url(self):
