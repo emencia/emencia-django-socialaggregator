@@ -28,8 +28,8 @@ class Aggregator(models.Model):
 
     name = models.CharField(_('name'), max_length=250)
     query = models.CharField(_('query'), max_length=250)
-    social_plugin = models.IntegerField(_('social plugin'),
-                                        choices=SOCIAL_PLUGINS)
+    social_plugin = models.CharField(_('social plugin'), max_length=250,
+                                     choices=SOCIAL_PLUGINS)
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
     slug = models.SlugField(_('slug'), unique=True, max_length=100)
     feeds = models.ManyToManyField(Feed, verbose_name=_('feeds'))
@@ -58,8 +58,8 @@ class Ressource(models.Model):
     author = models.CharField(_('author'), max_length=250)
     ressource_date = models.DateTimeField(_('ressource date'))
     feeds = models.ManyToManyField(Feed, verbose_name=_('feeds'))
-    social_type = models.IntegerField(_('social type'),
-                                      choices=SOCIAL_PLUGINS)
+    social_type = models.CharField(_('social plugin'), max_length=250,
+                                   choices=SOCIAL_PLUGINS)
     tags = TaggableManager()
     priority = models.IntegerField(_('display priority'), default=100)
     activate = models.BooleanField(_('activate'), default=False)
