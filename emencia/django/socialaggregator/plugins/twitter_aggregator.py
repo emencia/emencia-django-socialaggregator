@@ -5,7 +5,7 @@ from django.conf import settings
 from generic import GenericAggregator
 
 
-class TwitterAggregator(GenericAggregator):
+class Aggregator(GenericAggregator):
 
     CONSUMER_KEY = settings.EDSA_TWITTER_CONSUMER_KEY
     CONSUMER_SECRET = settings.EDSA_TWITTER_CONSUMER_SECRET
@@ -18,4 +18,15 @@ class TwitterAggregator(GenericAggregator):
         self.connector = Twitter(auth=auth)
 
     def search(self, query):
-        return self.connector.search.tweets(q=query)
+        res = self.connector.search.tweets(q=query)
+        datas = []
+        for tweet in res['statuses']:
+            data = {'social_id': tweet['id_str'],
+                    'lang': tweet['lang'],
+                    'creation_date': tweet['created_at'],
+                    'description': tweet['text'],
+                    'author': tweet['user']['name'],
+                    }
+            datas.append(data)
+
+        return datas
