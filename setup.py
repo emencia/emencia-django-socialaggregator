@@ -30,4 +30,5 @@ setup(name='emencia.django.socialaggregator',
       zip_safe=False,
       install_requires=['setuptools',
                         'django-taggit',
+                        'twitter',
                         'django'])
