@@ -7,12 +7,12 @@ EDSA_PLUGINS = {
         "ENGINE": "socialaggregator.plugins.twitter_aggregator",
         "NAME": "Twitter"
     },
-    "edsa_instagram": {
-        "ENGINE": "socialaggregator.plugins.instagram",
-        "NAME": "Instagram"
-    },
-    "edsa_youtube": {
-        "ENGINE": "socialaggregator.plugins.youtube",
-        "NAME": "Youtube"
-    },
+#    "edsa_instagram": {
+#        "ENGINE": "socialaggregator.plugins.instagram",
+#        "NAME": "Instagram"
+#    },
+#    "edsa_youtube": {
+#        "ENGINE": "socialaggregator.plugins.youtube",
+#        "NAME": "Youtube"
+#    },
 }
