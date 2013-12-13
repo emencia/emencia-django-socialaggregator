@@ -66,6 +66,7 @@ class Ressource(models.Model):
     feeds = models.ManyToManyField(Feed, verbose_name=_('feeds'))
     social_type = models.CharField(_('social plugin'), max_length=250,
                                    choices=SOCIAL_PLUGINS)
+    query = models.CharField(_('query'), max_length=250)
     tags = TaggableManager()
     priority = models.IntegerField(_('display priority'), default=100)
     activate = models.BooleanField(_('activate'), default=False)
