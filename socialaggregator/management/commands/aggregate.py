@@ -23,7 +23,7 @@ class Command(BaseCommand):
     # optionellement une aide pour les arguments
     args = 'social_type1, [social_type2], social_type3'
 
-    def record_ressource(data, aggr):
+    def record_ressource(self, data, aggr):
         if not Ressource.objects.filter(social_id=data['social_id']).exists():
             rce = Ressource(**data)
             rce.social_type = aggr.social_plugin
@@ -37,10 +37,10 @@ class Command(BaseCommand):
             queryset = Aggregator.objects.all()
         else:
             # aggregate only specify data
-            queryset = Aggregator.objects.filter(social_id__in=args)
+            queryset = Aggregator.objects.filter(social_plugin__in=args)
 
         for aggr in queryset:
-            plugin = AGGREGATORS[aggr.social_id]
+            plugin = AGGREGATORS[aggr.social_plugin]
             datas = plugin.search(aggr.query)
             for data in datas:
                 self.record_ressource(data, aggr)
