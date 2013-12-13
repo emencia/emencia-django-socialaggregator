@@ -72,6 +72,7 @@ class Ressource(models.Model):
     activate = models.BooleanField(_('activate'), default=False)
     favorite = models.BooleanField(_('favorite'), default=False)
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+    update_date = models.DateTimeField(_('update date'), auto_now=True)
 
     @models.permalink
     def get_absolute_url(self):
