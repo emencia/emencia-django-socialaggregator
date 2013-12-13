@@ -20,6 +20,9 @@ admin.site.register(Aggregator, AggregatorAdmin)
 
 
 class RessourceAdmin(admin.ModelAdmin):
-    pass
+    date_hierarchy = 'ressource_date'
+    list_display = ('name', 'author', 'language', 'social_type', 'query',
+                    'ressource_date', 'activate')
 
+    ordering = ['-creation_date', 'query']
 admin.site.register(Ressource, RessourceAdmin)
