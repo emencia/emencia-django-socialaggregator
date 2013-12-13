@@ -61,6 +61,7 @@ class Ressource(models.Model):
                                   upload_to='social_aggregator/thumbs',
                                   blank=True)
     author = models.CharField(_('author'), max_length=250)
+    language = models.CharField(_('language'), max_length=2)
     ressource_date = models.DateTimeField(_('ressource date'))
     feeds = models.ManyToManyField(Feed, verbose_name=_('feeds'))
     social_type = models.CharField(_('social plugin'), max_length=250,
