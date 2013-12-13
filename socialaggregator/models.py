@@ -50,6 +50,14 @@ class Aggregator(models.Model):
 class Ressource(models.Model):
     """Model representing a ressource"""
 
+    VIEW_SIZES = ((0, _('default')),
+                  (1, _('Xsmall')),
+                  (2, _('small')),
+                  (3, _('medium')),
+                  (4, _('large')),
+                  (5, _('Xlarge')),
+                  )
+
     social_id = models.CharField(_('social_id'), max_length=250)
     name = models.CharField(_('name'), max_length=250)
     slug = models.SlugField(_('slug'), unique=True, max_length=100)
@@ -60,6 +68,8 @@ class Ressource(models.Model):
     thumbnail = models.ImageField(_('thumbnail'),
                                   upload_to='social_aggregator/thumbs',
                                   blank=True)
+    view_size = models.IntegerField(_('view size'), choices=VIEW_SIZES,
+                                    blank=False, default=0)
     author = models.CharField(_('author'), max_length=250)
     language = models.CharField(_('language'), max_length=2)
     ressource_date = models.DateTimeField(_('ressource date'))
