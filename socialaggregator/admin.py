@@ -2,9 +2,9 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from emencia.django.socialaggregator.models import Feed
-from emencia.django.socialaggregator.models import Aggregator
-from emencia.django.socialaggregator.models import Ressource
+from socialaggregator.models import Feed
+from socialaggregator.models import Aggregator
+from socialaggregator.models import Ressource
 
 
 class FeedAdmin(admin.ModelAdmin):

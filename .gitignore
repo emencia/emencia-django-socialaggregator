@@ -2,4 +2,4 @@
 *.pot
 *.pyc
 local_settings.py
-emencia.django.socialaggregator.egg-info/
+emencia_django_socialaggregator.egg-info/

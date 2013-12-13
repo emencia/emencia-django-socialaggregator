@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from emencia.django.socialaggregator.models import Aggregator, Ressource
+from socialaggregator.models import Aggregator, Ressource
 
 
 def load_aggregators():

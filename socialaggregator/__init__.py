@@ -1,4 +1,4 @@
-"""emencia.django.social-aggregator"""
+"""emencia-django-socialaggregator"""
 __version__ = '0.1.dev'
 __license__ = 'AGPL License'
 
