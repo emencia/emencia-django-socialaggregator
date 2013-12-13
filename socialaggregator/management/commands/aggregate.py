@@ -27,6 +27,7 @@ class Command(BaseCommand):
         if not Ressource.objects.filter(social_id=data['social_id']).exists():
             rce = Ressource(**data)
             rce.social_type = aggr.social_plugin
+            rce.query = aggr.query
             rce.save()
             for feed in aggr.feeds.all():
                 rce.feeds.add(feed)
