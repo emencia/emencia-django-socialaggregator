@@ -24,6 +24,6 @@ class RessourceAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
     list_display = ('name', 'author', 'language', 'social_type', 'query',
                     'ressource_date', 'activate')
-
+    list_filter = ('social_type', 'activate',)
     ordering = ['-creation_date', 'query']
 admin.site.register(Ressource, RessourceAdmin)
