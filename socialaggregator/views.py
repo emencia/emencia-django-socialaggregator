@@ -31,7 +31,7 @@ class JSONResponseMixin(object):
 class RessourceListView(JSONResponseMixin, ListView):
 
     model = Ressource
-    is_paginated = True
+    paginate_by = 20
 
     def render_to_response(self, context):
         # Look for a 'format=json' GET argument
