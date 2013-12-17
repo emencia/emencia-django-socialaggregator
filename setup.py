@@ -27,4 +27,5 @@ setup(name='emencia-django-socialaggregator',
                         'django-taggit',
                         'twitter',
                         'python-instagram',
+                        'facebook-sdk',
                         'django'])

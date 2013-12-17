@@ -11,6 +11,10 @@ EDSA_PLUGINS = {
         "ENGINE": "socialaggregator.plugins.instagram_aggregator",
         "NAME": "Instagram"
     },
+    "edsa_facebook_fanpage": {
+        "ENGINE": "socialaggregator.plugins.facebook_fanpage_aggregator",
+        "NAME": "Facebook Fanpage"
+    },
 #    "edsa_youtube": {
 #        "ENGINE": "socialaggregator.plugins.youtube",
 #        "NAME": "Youtube"

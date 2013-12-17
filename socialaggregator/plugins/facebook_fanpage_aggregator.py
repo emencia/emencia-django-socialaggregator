@@ -1,0 +1,37 @@
+from facebook import GraphAPI
+from datetime import datetime
+
+from django.conf import settings
+from generic import GenericAggregator
+
+
+class Aggregator(GenericAggregator):
+
+    ACCESS_TOKEN = settings.EDSA_FB_FANPAGE_ACCESS_TOKEN
+
+    datetime_format = "%Y-%m-%dT%H:%M:%S+0000"
+
+    def init_connector(self):
+        self.connector = GraphAPI(self.ACCESS_TOKEN)
+
+    def search(self, query):
+        res = self.connector.get_object("%s/posts" % query)
+        datas = []
+        for post in res['data']:
+            if 'message' in post:
+                if 'link' in post:
+                    link = post['link']
+                else:
+                    link = ""
+                data = {'social_id': post['id'],
+                        'name': 'fb fanpage %s' % post['id'],
+                        'slug': 'fb_fanpage_%s' % post['id'],
+                        'ressource_date': datetime.strptime(post['created_time'],
+                                                            self.datetime_format),
+                        'description': post['message'],
+                        'short_description': link,
+                        'author': post['from']['name'],
+                        }
+                datas.append(data)
+
+        return datas
