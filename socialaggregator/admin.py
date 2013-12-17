@@ -8,19 +8,20 @@ from socialaggregator.models import Ressource
 
 
 class FeedAdmin(admin.ModelAdmin):
-    pass
+    prepopulated_fields = {"slug": ("name",)}
 
 admin.site.register(Feed, FeedAdmin)
 
 
 class AggregatorAdmin(admin.ModelAdmin):
-    pass
+    prepopulated_fields = {"slug": ("name",)}
 
 admin.site.register(Aggregator, AggregatorAdmin)
 
 
 class RessourceAdmin(admin.ModelAdmin):
     date_hierarchy = 'ressource_date'
+    prepopulated_fields = {"slug": ("name",)}
     list_display = ('name', 'author', 'language', 'social_type', 'query',
                     'ressource_date', 'activate')
 
