@@ -26,4 +26,5 @@ setup(name='emencia-django-socialaggregator',
       install_requires=['setuptools',
                         'django-taggit',
                         'twitter',
+                        'python-instagram',
                         'django'])
