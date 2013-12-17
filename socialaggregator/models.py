@@ -8,7 +8,7 @@ from taggit.managers import TaggableManager
 
 def build_social_plugins_list():
     return [(plugin, datas["NAME"]) for plugin, datas in
-            settings.EDSA_PLUGINS.items()]
+             settings.EDSA_PLUGINS.items()]
 
 SOCIAL_PLUGINS = build_social_plugins_list()
 
@@ -58,7 +58,9 @@ class Ressource(models.Model):
                   (5, _('Xlarge')),
                   )
 
-    social_id = models.CharField(_('social_id'), max_length=250)
+    SOCIAL_LIST = [('edsa_article', 'Article'),] + SOCIAL_PLUGINS
+
+    social_id = models.CharField(_('social_id'), max_length=250, blank=True)
     name = models.CharField(_('name'), max_length=250)
     slug = models.SlugField(_('slug'), unique=True, max_length=100)
     description = models.TextField(_('description'), blank=True)
@@ -75,7 +77,8 @@ class Ressource(models.Model):
     ressource_date = models.DateTimeField(_('ressource date'))
     feeds = models.ManyToManyField(Feed, verbose_name=_('feeds'))
     social_type = models.CharField(_('social plugin'), max_length=250,
-                                   choices=SOCIAL_PLUGINS)
+                                   choices=SOCIAL_LIST,
+                                   default="edsa_article")
     query = models.CharField(_('query'), max_length=250)
     tags = TaggableManager()
     priority = models.IntegerField(_('display priority'), default=100)
