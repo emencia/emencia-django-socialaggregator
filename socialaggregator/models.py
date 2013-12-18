@@ -67,6 +67,11 @@ class Ressource(models.Model):
                     ('top', _('top')),
                     )
 
+    MEDIA_TYPE = (('url', _('url')),
+                  ('image', _('image')),
+                  ('video', _('video')),
+                  )
+
     SOCIAL_LIST = [('edsa_article', 'Article'),] + SOCIAL_PLUGINS
 
     social_id = models.CharField(_('social_id'), max_length=250, blank=True)
@@ -79,6 +84,9 @@ class Ressource(models.Model):
     thumbnail = models.ImageField(_('thumbnail'),
                                   upload_to='social_aggregator/thumbs',
                                   blank=True)
+    media_url = models.URLField(_('media url'), blank=True)
+    media_url_type = models.CharField(_('media url type'), max_length=100,
+                                      blank=True, choices=MEDIA_TYPE)
     view_size = models.CharField(_('view size'), max_length=100,
                                  choices=VIEW_SIZES, blank=False,
                                  default='default')
