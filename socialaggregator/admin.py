@@ -18,6 +18,14 @@ class AggregatorAdmin(admin.ModelAdmin):
 
 admin.site.register(Aggregator, AggregatorAdmin)
 
+def make_activated(modeladmin, request, queryset):
+    queryset.update(activate=True)
+make_activated.short_description = _("Mark selected ressources as activated")
+
+def make_unactivated(modeladmin, request, queryset):
+    queryset.update(activate=False)
+make_unactivated.short_description = _("Mark selected ressources as unactivated")
+
 
 class RessourceAdmin(admin.ModelAdmin):
     date_hierarchy = 'ressource_date'
@@ -26,4 +34,6 @@ class RessourceAdmin(admin.ModelAdmin):
                     'ressource_date', 'activate')
     list_filter = ('social_type', 'activate', 'feeds', 'language')
     ordering = ['-ressource_date', 'query']
+    actions = [make_activated, make_unactivated]
+
 admin.site.register(Ressource, RessourceAdmin)
