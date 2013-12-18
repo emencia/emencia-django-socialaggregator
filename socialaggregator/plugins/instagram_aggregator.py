@@ -27,7 +27,8 @@ class Aggregator(GenericAggregator):
                     'slug': 'instagram_%s' % media.id,
                     'ressource_date': media.created_time,
                     'description': text,
-                    'short_description': media.get_standard_resolution_url(),
+                    'media_url': media.get_standard_resolution_url(),
+                    'media_url_type': 'image',
                     'author': media.user.username,
                     }
             datas.append(data)
