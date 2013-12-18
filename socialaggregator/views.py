@@ -41,3 +41,11 @@ class RessourceListView(JSONResponseMixin, ListView):
         else:
             self.response_class = TemplateResponse
             return ListView.render_to_response(self, context)
+
+class RessourceByFeedListView(RessourceListView):
+
+    def get_queryset(self):
+        queryset = super(RessourceByFeedListView, self).get_queryset()
+        slug = self.kwargs['slug']
+        queryset = queryset.filter(feeds__slug=slug)
+        return queryset
