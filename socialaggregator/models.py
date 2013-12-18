@@ -46,8 +46,18 @@ class Aggregator(models.Model):
     class Meta:
         verbose_name = _('aggregator')
         verbose_name_plural = _('aggregators')
+ 
+class RessourceQuerySet(models.query.QuerySet):
+    def update(self, *args, **kwargs):
+        kwargs['update_date'] = datetime.now()
+        kwargs['updated'] = True
+        super(RessourceQuerySet, self).update(*args, **kwargs)
 
-class ActivatedManager(models.Manager):
+class RessourceManager(models.Manager):
+    def get_query_set(self):
+        return RessourceQuerySet(self.model, using=self._db)
+
+class ActivatedManager(RessourceManager):
     def get_query_set(self):
         queryset = super(ActivatedManager, self).get_query_set()
         return queryset.filter(activate=True)
@@ -114,8 +124,14 @@ class Ressource(models.Model):
     updated = models.BooleanField(_('updated'), default=False)
 
     # Managers
-    objects = models.Manager()
+    objects = RessourceManager()
     activated = ActivatedManager()
+
+    def save(self, *args, **kwargs):
+        if self.update_date and not self.updated:
+            self.updated = True
+        self.update_date = datetime.now()
+        super(Ressource, self).save(*args, **kwargs)
 
     @models.permalink
     def get_absolute_url(self):
