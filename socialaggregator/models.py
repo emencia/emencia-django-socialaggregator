@@ -80,7 +80,7 @@ class Ressource(models.Model):
                                    choices=SOCIAL_LIST,
                                    default="edsa_article")
     query = models.CharField(_('query'), max_length=250)
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
     priority = models.IntegerField(_('display priority'), default=100)
     activate = models.BooleanField(_('activate'), default=False)
     favorite = models.BooleanField(_('favorite'), default=False)
