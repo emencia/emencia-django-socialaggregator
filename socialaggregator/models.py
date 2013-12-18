@@ -1,4 +1,5 @@
 """Models for parrot.gallery"""
+from datetime import datetime
 from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
@@ -105,8 +106,12 @@ class Ressource(models.Model):
     priority = models.IntegerField(_('display priority'), default=100)
     activate = models.BooleanField(_('activate'), default=False)
     favorite = models.BooleanField(_('favorite'), default=False)
-    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
-    update_date = models.DateTimeField(_('update date'), auto_now=True)
+    creation_date = models.DateTimeField(_('creation date'),
+                                         default=datetime.now(),
+                                         editable=False)
+    update_date = models.DateTimeField(_('update date'),
+                                       default=None)
+    updated = models.BooleanField(_('updated'), default=False)
 
     # Managers
     objects = models.Manager()
