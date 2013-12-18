@@ -31,9 +31,10 @@ class RessourceAdmin(admin.ModelAdmin):
     date_hierarchy = 'ressource_date'
     prepopulated_fields = {"slug": ("name",)}
     list_display = ('name', 'author', 'language', 'social_type', 'query',
-                    'ressource_date', 'activate')
-    list_filter = ('social_type', 'activate', 'feeds', 'language')
-    ordering = ['-ressource_date', 'query']
+                    'ressource_date', 'activate', 'updated')
+    list_filter = ('social_type', 'activate', 'updated', 'feeds', 'language')
+    ordering = ['updated', '-ressource_date', 'query']
+    exclude = ('updated', 'update_date',)
     actions = [make_activated, make_unactivated]
 
 admin.site.register(Ressource, RessourceAdmin)
