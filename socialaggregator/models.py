@@ -50,13 +50,18 @@ class Aggregator(models.Model):
 class Ressource(models.Model):
     """Model representing a ressource"""
 
-    VIEW_SIZES = ((0, _('default')),
-                  (1, _('Xsmall')),
-                  (2, _('small')),
-                  (3, _('medium')),
-                  (4, _('large')),
-                  (5, _('Xlarge')),
+    VIEW_SIZES = (('default', _('default')),
+                  ('xsmall', _('Xsmall')),
+                  ('small', _('small')),
+                  ('medium', _('medium')),
+                  ('large', _('large')),
+                  ('xlarge', _('Xlarge')),
                   )
+
+    TEXT_DISPLAY = (('default', _('default')),
+                    ('bottom', _('bottom')),
+                    ('top', _('top')),
+                    )
 
     SOCIAL_LIST = [('edsa_article', 'Article'),] + SOCIAL_PLUGINS
 
@@ -70,8 +75,12 @@ class Ressource(models.Model):
     thumbnail = models.ImageField(_('thumbnail'),
                                   upload_to='social_aggregator/thumbs',
                                   blank=True)
-    view_size = models.IntegerField(_('view size'), choices=VIEW_SIZES,
-                                    blank=False, default=0)
+    view_size = models.CharField(_('view size'), max_length=100,
+                                 choices=VIEW_SIZES, blank=False,
+                                 default='default')
+    text_display = models.CharField(_('text display'), max_length=100,
+                                    choices=TEXT_DISPLAY, blank=False,
+                                    default='default')
     author = models.CharField(_('author'), max_length=250)
     language = models.CharField(_('language'), max_length=2)
     ressource_date = models.DateTimeField(_('ressource date'))
