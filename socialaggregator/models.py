@@ -46,6 +46,10 @@ class Aggregator(models.Model):
         verbose_name = _('aggregator')
         verbose_name_plural = _('aggregators')
 
+class ActivatedManager(models.Manager):
+    def get_query_set(self):
+        queryset = super(ActivatedManager, self).get_query_set()
+        return queryset.filter(activate=True)
 
 class Ressource(models.Model):
     """Model representing a ressource"""
@@ -95,6 +99,10 @@ class Ressource(models.Model):
     favorite = models.BooleanField(_('favorite'), default=False)
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
     update_date = models.DateTimeField(_('update date'), auto_now=True)
+
+    # Managers
+    objects = models.Manager()
+    activated = ActivatedManager()
 
     @models.permalink
     def get_absolute_url(self):

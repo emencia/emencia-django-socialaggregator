@@ -32,6 +32,7 @@ class RessourceListView(JSONResponseMixin, ListView):
 
     model = Ressource
     paginate_by = 20
+    queryset = Ressource.activated.order_by('priority','-ressource_date')
 
     def render_to_response(self, context):
         # Look for a 'format=json' GET argument
