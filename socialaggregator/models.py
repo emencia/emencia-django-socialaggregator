@@ -82,6 +82,13 @@ class Ressource(models.Model):
                     ('top', _('top')),
                     )
 
+    BUTTON_COLOR = (('white', _('white')),
+                    ('black', _('black')),
+                    ('primary', _('primary')),
+                    ('secondary', _('secondary')),
+                    ('tertiary', _('tertiary')),
+                    )
+
     MEDIA_TYPE = (('url', _('url')),
                   ('image', _('image')),
                   ('video', _('video')),
@@ -128,6 +135,9 @@ class Ressource(models.Model):
                                     default='default')
     button_label = models.CharField(_('button label'), max_length=100,
                                     blank=True)
+    button_color = models.CharField(_('button color'), max_length=100,
+                                    choices=BUTTON_COLOR, blank=False,
+                                    default='black')
 
     # META DATA
     creation_date = models.DateTimeField(_('creation date'),
