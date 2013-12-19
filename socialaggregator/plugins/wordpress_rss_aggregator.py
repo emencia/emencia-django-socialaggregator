@@ -28,7 +28,7 @@ class Aggregator(GenericAggregator):
                 language = ''
             data = {'social_id': feed['id'],
                     'name': feed['title'],
-                    'slug': slugify(feed['id']),
+                    'slug': slugify(feed['title']),
                     'ressource_date': date,
                     'description': content['value'],
                     'language': language,
