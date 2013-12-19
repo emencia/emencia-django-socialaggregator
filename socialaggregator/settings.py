@@ -20,8 +20,8 @@ EDSA_PLUGINS = {
         "ENGINE": "socialaggregator.plugins.wordpress_rss_aggregator",
         "NAME": "Wordpress RSS"
     },
-    #"edsa_youtube": {
-    #    "ENGINE": "socialaggregator.plugins.youtube",
-    #    "NAME": "Youtube"
-    #},
+    "edsa_youtube_search": {
+        "ENGINE": "socialaggregator.plugins.youtube_search_aggregator",
+        "NAME": "Youtube search"
+    },
 }
