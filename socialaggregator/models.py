@@ -46,7 +46,7 @@ class Aggregator(models.Model):
     class Meta:
         verbose_name = _('aggregator')
         verbose_name_plural = _('aggregators')
- 
+
 class RessourceQuerySet(models.query.QuerySet):
     def update(self, *args, **kwargs):
         kwargs['update_date'] = datetime.now()
@@ -105,13 +105,13 @@ class Ressource(models.Model):
                                     choices=TEXT_DISPLAY, blank=False,
                                     default='default')
     author = models.CharField(_('author'), max_length=250)
-    language = models.CharField(_('language'), max_length=2)
+    language = models.CharField(_('language'), max_length=2, blank=True)
     ressource_date = models.DateTimeField(_('ressource date'))
     feeds = models.ManyToManyField(Feed, verbose_name=_('feeds'))
     social_type = models.CharField(_('social plugin'), max_length=250,
                                    choices=SOCIAL_LIST,
                                    default="edsa_article")
-    query = models.CharField(_('query'), max_length=250)
+    query = models.CharField(_('query'), max_length=250, blank=True)
     tags = TaggableManager(blank=True)
     priority = models.IntegerField(_('display priority'), default=100)
     activate = models.BooleanField(_('activate'), default=False)
