@@ -39,5 +39,18 @@ class RessourceAdmin(admin.ModelAdmin):
     ordering = ['updated', '-ressource_date', 'query']
     exclude = ('updated', 'update_date',)
     actions = [make_activated, make_unactivated]
+    fieldsets = ((_('Main infos'), {'fields': ('name', 'slug', 'description',
+                                               'short_description', 'image',
+                                               'thumbnail', 'media_url',
+                                               'media_url_type')}),
+                 (_('Extra infos'), {'fields': ('priority', 'activate',
+                                                'author', 'language', 'feeds',
+                                                'ressource_date', 'tags')}),
+                 (_('Social network infos'), {'fields': ('social_id',
+                                                         'social_type',
+                                                         'query')}),
+                 (_('Display infos'), {'fields': ('favorite', 'view_size',
+                                                  'text_display',
+                                                  'button_label',)}))
 
 admin.site.register(Ressource, RessourceAdmin)
