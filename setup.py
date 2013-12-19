@@ -28,4 +28,5 @@ setup(name='emencia-django-socialaggregator',
                         'twitter',
                         'python-instagram',
                         'facebook-sdk',
+                        'feedparser',
                         'django'])

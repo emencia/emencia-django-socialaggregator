@@ -16,6 +16,10 @@ EDSA_PLUGINS = {
         "ENGINE": "socialaggregator.plugins.facebook_fanpage_aggregator",
         "NAME": "Facebook Fanpage"
     },
+    "edsa_wordpress_rss": {
+        "ENGINE": "socialaggregator.plugins.wordpress_rss_aggregator",
+        "NAME": "Wordpress RSS"
+    },
     #"edsa_youtube": {
     #    "ENGINE": "socialaggregator.plugins.youtube",
     #    "NAME": "Youtube"
