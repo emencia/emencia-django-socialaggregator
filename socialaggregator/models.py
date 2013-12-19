@@ -108,6 +108,8 @@ class Ressource(models.Model):
     text_display = models.CharField(_('text display'), max_length=100,
                                     choices=TEXT_DISPLAY, blank=False,
                                     default='default')
+    button_label = models.CharField(_('button label'), max_length=100,
+                                    blank=True)
     author = models.CharField(_('author'), max_length=250)
     language = models.CharField(_('language'), max_length=2, blank=True)
     ressource_date = models.DateTimeField(_('ressource date'))
