@@ -89,7 +89,7 @@ class Ressource(models.Model):
 
     SOCIAL_LIST = [('edsa_article', 'Article'), ] + SOCIAL_PLUGINS
 
-    social_id = models.CharField(_('social_id'), max_length=250, blank=True)
+    # ressource main infos
     name = models.CharField(_('name'), max_length=250)
     slug = models.SlugField(_('slug'), unique=True, max_length=100)
     description = models.TextField(_('description'), blank=True)
@@ -102,6 +102,24 @@ class Ressource(models.Model):
     media_url = models.URLField(_('media url'), blank=True)
     media_url_type = models.CharField(_('media url type'), max_length=100,
                                       blank=True, choices=MEDIA_TYPE)
+    # extra infos
+    priority = models.IntegerField(_('display priority'), default=100)
+    activate = models.BooleanField(_('activate'), default=False)
+    author = models.CharField(_('author'), max_length=250)
+    language = models.CharField(_('language'), max_length=2, blank=True)
+    feeds = models.ManyToManyField(Feed, verbose_name=_('feeds'))
+    ressource_date = models.DateTimeField(_('ressource date'))
+    tags = TaggableManager(blank=True)
+
+    # social network info
+    social_id = models.CharField(_('social_id'), max_length=250, blank=True)
+    social_type = models.CharField(_('social plugin'), max_length=250,
+                                   choices=SOCIAL_LIST,
+                                   default="edsa_article")
+    query = models.CharField(_('query'), max_length=250, blank=True)
+
+    # display infos
+    favorite = models.BooleanField(_('favorite'), default=False)
     view_size = models.CharField(_('view size'), max_length=100,
                                  choices=VIEW_SIZES, blank=False,
                                  default='default')
@@ -110,18 +128,8 @@ class Ressource(models.Model):
                                     default='default')
     button_label = models.CharField(_('button label'), max_length=100,
                                     blank=True)
-    author = models.CharField(_('author'), max_length=250)
-    language = models.CharField(_('language'), max_length=2, blank=True)
-    ressource_date = models.DateTimeField(_('ressource date'))
-    feeds = models.ManyToManyField(Feed, verbose_name=_('feeds'))
-    social_type = models.CharField(_('social plugin'), max_length=250,
-                                   choices=SOCIAL_LIST,
-                                   default="edsa_article")
-    query = models.CharField(_('query'), max_length=250, blank=True)
-    tags = TaggableManager(blank=True)
-    priority = models.IntegerField(_('display priority'), default=100)
-    activate = models.BooleanField(_('activate'), default=False)
-    favorite = models.BooleanField(_('favorite'), default=False)
+
+    # META DATA
     creation_date = models.DateTimeField(_('creation date'),
                                          default=datetime.now(),
                                          editable=False)
