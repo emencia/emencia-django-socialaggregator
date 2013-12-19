@@ -4,7 +4,8 @@ Settings for emencia-django-socialaggregator (EDSA)
 
 EDSA_PLUGINS = {
     "edsa_twitter": {
-        "ENGINE": "socialaggregator.plugins.twitter_aggregator",
+        #"ENGINE": "socialaggregator.plugins.twitter_aggregator",
+        "ENGINE": "socialaggregator.plugins.twitter_noretweet_aggregator",
         "NAME": "Twitter"
     },
     "edsa_instagram": {
