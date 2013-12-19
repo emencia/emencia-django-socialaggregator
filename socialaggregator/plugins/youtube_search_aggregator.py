@@ -18,7 +18,6 @@ class Aggregator(GenericAggregator):
         self.connector = build(self.YOUTUBE_API_SERVICE_NAME,
                                self.YOUTUBE_API_VERSION,
                                developerKey=self.DEVELOPER_KEY)
-    
 
     def search(self, query):
         res = self.connector.search().list(q=query, part="id,snippet",
