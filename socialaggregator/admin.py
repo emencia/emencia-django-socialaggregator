@@ -18,13 +18,16 @@ class AggregatorAdmin(admin.ModelAdmin):
 
 admin.site.register(Aggregator, AggregatorAdmin)
 
+
 def make_activated(modeladmin, request, queryset):
     queryset.update(activate=True)
 make_activated.short_description = _("Mark selected ressources as activated")
 
+
 def make_unactivated(modeladmin, request, queryset):
     queryset.update(activate=False)
-make_unactivated.short_description = _("Mark selected ressources as unactivated")
+make_unactivated.short_description = _("Mark selected ressources as \
+                                        unactivated")
 
 
 class RessourceAdmin(admin.ModelAdmin):

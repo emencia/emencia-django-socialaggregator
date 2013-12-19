@@ -7,6 +7,7 @@ from django.core import serializers
 
 from models import Ressource
 
+
 class JSONResponseMixin(object):
     """
     A mixin that can be used to render a JSON response.
@@ -32,7 +33,7 @@ class RessourceListView(JSONResponseMixin, ListView):
 
     model = Ressource
     paginate_by = 20
-    queryset = Ressource.activated.order_by('priority','-ressource_date')
+    queryset = Ressource.activated.order_by('priority', '-ressource_date')
 
     def render_to_response(self, context):
         # Look for a 'format=json' GET argument
@@ -42,6 +43,7 @@ class RessourceListView(JSONResponseMixin, ListView):
         else:
             self.response_class = TemplateResponse
             return ListView.render_to_response(self, context)
+
 
 class RessourceByFeedListView(RessourceListView):
 

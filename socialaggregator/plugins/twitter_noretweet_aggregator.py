@@ -10,12 +10,13 @@ class Aggregator(TwitterAggregator):
         datas = []
         for tweet in res['statuses']:
             if 'retweeted_status' not in tweet:
+                date = datetime.strptime(tweet['created_at'],
+                                         self.datetime_format)
                 data = {'social_id': tweet['id_str'],
                         'name': 'tweet %s' % tweet['id_str'],
                         'slug': 'tweet_%s' % tweet['id_str'],
                         'language': tweet['lang'],
-                        'ressource_date': datetime.strptime(tweet['created_at'],
-                                                            self.datetime_format),
+                        'ressource_date': date,
                         'description': tweet['text'],
                         'author': tweet['user']['name'],
                         }

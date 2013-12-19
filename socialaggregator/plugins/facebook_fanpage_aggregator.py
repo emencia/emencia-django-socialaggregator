@@ -25,11 +25,12 @@ class Aggregator(GenericAggregator):
                 else:
                     link = ""
                     media_url_type = ''
+                date = datetime.strptime(post['created_time'],
+                                         self.datetime_format)
                 data = {'social_id': post['id'],
                         'name': 'fb fanpage %s' % post['id'],
                         'slug': 'fb_fanpage_%s' % post['id'],
-                        'ressource_date': datetime.strptime(post['created_time'],
-                                                            self.datetime_format),
+                        'ressource_date': date,
                         'description': post['message'],
                         'media_url': link,
                         'media_url_type': media_url_type,

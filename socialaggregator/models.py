@@ -9,7 +9,7 @@ from taggit.managers import TaggableManager
 
 def build_social_plugins_list():
     return [(plugin, datas["NAME"]) for plugin, datas in
-             settings.EDSA_PLUGINS.items()]
+            settings.EDSA_PLUGINS.items()]
 
 SOCIAL_PLUGINS = build_social_plugins_list()
 
@@ -47,20 +47,24 @@ class Aggregator(models.Model):
         verbose_name = _('aggregator')
         verbose_name_plural = _('aggregators')
 
+
 class RessourceQuerySet(models.query.QuerySet):
     def update(self, *args, **kwargs):
         kwargs['update_date'] = datetime.now()
         kwargs['updated'] = True
         super(RessourceQuerySet, self).update(*args, **kwargs)
 
+
 class RessourceManager(models.Manager):
     def get_query_set(self):
         return RessourceQuerySet(self.model, using=self._db)
+
 
 class ActivatedManager(RessourceManager):
     def get_query_set(self):
         queryset = super(ActivatedManager, self).get_query_set()
         return queryset.filter(activate=True)
+
 
 class Ressource(models.Model):
     """Model representing a ressource"""
@@ -83,7 +87,7 @@ class Ressource(models.Model):
                   ('video', _('video')),
                   )
 
-    SOCIAL_LIST = [('edsa_article', 'Article'),] + SOCIAL_PLUGINS
+    SOCIAL_LIST = [('edsa_article', 'Article'), ] + SOCIAL_PLUGINS
 
     social_id = models.CharField(_('social_id'), max_length=250, blank=True)
     name = models.CharField(_('name'), max_length=250)
