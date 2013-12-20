@@ -8,8 +8,6 @@ from generic import GenericAggregator
 
 class Aggregator(GenericAggregator):
 
-    ACCESS_TOKEN = settings.EDSA_FB_FANPAGE_ACCESS_TOKEN
-
     datetime_format = "%a, %d %b %Y %H:%M:%S +0000"
 
     def init_connector(self):
