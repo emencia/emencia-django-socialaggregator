@@ -1,3 +1,4 @@
+import httplib
 from facebook import GraphAPI
 from datetime import datetime
 
@@ -7,12 +8,21 @@ from generic import GenericAggregator
 
 class Aggregator(GenericAggregator):
 
-    ACCESS_TOKEN = settings.EDSA_FB_FANPAGE_ACCESS_TOKEN
+    APP_ID = settings.EDSA_FB_APP_ID
+    APP_SECRET = settings.EDSA_FB_APP_SECRET
 
     datetime_format = "%Y-%m-%dT%H:%M:%S+0000"
 
     def init_connector(self):
-        self.connector = GraphAPI(self.ACCESS_TOKEN)
+        req = httplib.HTTPSConnection('graph.facebook.com')
+        uri = "/oauth/access_token?client_id=%s"\
+              "&client_secret=%s"\
+              "&grant_type=client_credentials" % (self.APP_ID, self.APP_SECRET)
+        req.request("GET", uri)
+        r1 = req.getresponse()
+        data = r1.read()
+        access_token = data.split('=')[1]
+        self.connector = GraphAPI(access_token)
 
     def search(self, query):
         res = self.connector.get_object("%s/posts" % query)
