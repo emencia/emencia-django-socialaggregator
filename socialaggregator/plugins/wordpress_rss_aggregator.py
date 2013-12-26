@@ -1,8 +1,11 @@
 import feedparser
 from datetime import datetime
 
-from django.conf import settings
-from django.utils.text import slugify
+try:
+    from django.utils.text import slugify
+except ImportError:
+    # older django
+    from django.template.defaultfilters import slugify
 from generic import GenericAggregator
 
 
