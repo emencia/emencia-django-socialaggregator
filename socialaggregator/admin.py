@@ -51,6 +51,7 @@ class RessourceAdmin(admin.ModelAdmin):
                                                          'query')}),
                  (_('Display infos'), {'fields': ('favorite', 'view_size',
                                                   'text_display',
-                                                  'button_label',)}))
+                                                  'button_label',
+                                                  'button_color')}))
 
 admin.site.register(Ressource, RessourceAdmin)
