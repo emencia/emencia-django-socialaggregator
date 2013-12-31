@@ -39,6 +39,7 @@ class RessourceAdmin(admin.ModelAdmin):
     ordering = ['updated', '-ressource_date', 'query']
     exclude = ('updated', 'update_date',)
     actions = [make_activated, make_unactivated]
+    search_fields = ('name', 'author', 'description', 'short_description')
     fieldsets = ((_('Main infos'), {'fields': ('name', 'slug', 'description',
                                                'short_description', 'image',
                                                'thumbnail', 'media_url',
