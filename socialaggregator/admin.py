@@ -33,8 +33,10 @@ make_unactivated.short_description = _("Mark selected ressources as \
 class RessourceAdmin(admin.ModelAdmin):
     date_hierarchy = 'ressource_date'
     prepopulated_fields = {"slug": ("name",)}
-    list_display = ('name', 'author', 'language', 'social_type', 'query',
-                    'ressource_date', 'activate', 'updated')
+    list_display = ('name', 'author', 'priority', 'view_size', 'language',
+                    'social_type', 'query', 'ressource_date', 'activate',
+                    'updated')
+    list_editable = ('priority',)
     list_filter = ('social_type', 'activate', 'updated', 'feeds', 'language')
     ordering = ['updated', '-ressource_date', 'query']
     exclude = ('updated', 'update_date',)
