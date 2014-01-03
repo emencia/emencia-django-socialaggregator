@@ -106,7 +106,7 @@ class Ressource(models.Model):
     thumbnail = models.ImageField(_('thumbnail'),
                                   upload_to='social_aggregator/thumbs',
                                   blank=True)
-    media_url = models.URLField(_('media url'), blank=True)
+    media_url = models.URLField(_('media url'), blank=True, max_length=500)
     media_url_type = models.CharField(_('media url type'), max_length=100,
                                       blank=True, choices=MEDIA_TYPE)
     # extra infos
