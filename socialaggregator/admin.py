@@ -1,5 +1,7 @@
 """Admin for parrot.gallery"""
+from datetime import datetime
 from django.contrib import admin
+from django.db import IntegrityError
 from django.utils.translation import ugettext_lazy as _
 
 from socialaggregator.models import Feed
@@ -29,6 +31,24 @@ def make_unactivated(modeladmin, request, queryset):
 make_unactivated.short_description = _("Mark selected ressources as \
                                         unactivated")
 
+def make_duplicate(modeladmin, request, queryset):
+    for data in queryset:
+        data.pk = None
+        slug = data.slug + '_copy_%i'
+        name = data.name + ' Copy %i'
+        ver = 0
+        data.creation_date = datetime.now()
+        save = False
+        while not save:
+            try:
+                data.slug = slug % ver
+                data.name = name % ver
+                data.update_date = None
+                data.save()
+                save = True
+            except IntegrityError, e:
+                ver += 1
+make_duplicate.short_description = _("Copy selected ressources")
 
 class RessourceAdmin(admin.ModelAdmin):
     date_hierarchy = 'ressource_date'
@@ -40,7 +60,7 @@ class RessourceAdmin(admin.ModelAdmin):
     list_filter = ('social_type', 'activate', 'updated', 'feeds', 'language')
     ordering = ['updated', '-ressource_date', 'query']
     exclude = ('updated', 'update_date',)
-    actions = [make_activated, make_unactivated]
+    actions = [make_activated, make_unactivated, make_duplicate]
     search_fields = ('name', 'author', 'description', 'short_description')
     fieldsets = ((_('Main infos'), {'fields': ('name', 'slug', 'description',
                                                'short_description', 'image',
