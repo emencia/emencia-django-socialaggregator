@@ -4,6 +4,7 @@ from django.views.generic import ListView
 from django.http import HttpResponse
 from django.template.response import TemplateResponse
 from django.core import serializers
+from django.conf import settings
 
 from models import Ressource
 
@@ -32,7 +33,7 @@ class JSONResponseMixin(object):
 class RessourceListView(JSONResponseMixin, ListView):
 
     model = Ressource
-    paginate_by = 20
+    paginate_by = settings.EDSA_PAGINATION
     queryset = Ressource.activated.order_by('priority', '-ressource_date')
 
     def render_to_response(self, context):

@@ -25,3 +25,5 @@ EDSA_PLUGINS = {
         "NAME": "Youtube search"
     },
 }
+
+EDSA_PAGINATION = 20
