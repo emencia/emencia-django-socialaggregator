@@ -49,7 +49,7 @@ def make_duplicate(modeladmin, request, queryset):
                 save = True
             except IntegrityError, e:
                 ver += 1
-make_duplicate.short_description = _("Copy selected ressources")
+make_duplicate.short_description = _("Duplicate selected ressources")
 
 class RessourceAdmin(admin.ModelAdmin):
     date_hierarchy = 'ressource_date'
