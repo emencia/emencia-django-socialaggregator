@@ -31,6 +31,7 @@ def make_unactivated(modeladmin, request, queryset):
 make_unactivated.short_description = _("Mark selected ressources as \
                                         unactivated")
 
+
 def make_duplicate(modeladmin, request, queryset):
     for data in queryset:
         data.pk = None
@@ -50,6 +51,7 @@ def make_duplicate(modeladmin, request, queryset):
             except IntegrityError, e:
                 ver += 1
 make_duplicate.short_description = _("Duplicate selected ressources")
+
 
 class RessourceAdmin(admin.ModelAdmin):
     date_hierarchy = 'ressource_date'
