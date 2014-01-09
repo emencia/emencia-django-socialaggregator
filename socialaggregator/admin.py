@@ -34,6 +34,7 @@ make_unactivated.short_description = _("Mark selected ressources as \
 def make_duplicate(modeladmin, request, queryset):
     for data in queryset:
         data.pk = None
+        data.activate = False
         slug = data.slug + '_copy_%i'
         name = data.name + ' Copy %i'
         ver = 0
