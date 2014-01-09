@@ -1,0 +1,13 @@
+{% block content %}
+<div id="content-main">
+    <h1> Ressources</h1>
+        {% for ob in object_list %}
+        <div id="ressource">
+            <h2>{{ ob.name }}</h2>
+            <div id="ressource_description">
+                {{ ob.description }}
+            </div>
+        </div>
+        {% endfor %}
+</div>
+{% endblock %}
