@@ -1,3 +1,11 @@
+.. _django-taggit: https://pypi.python.org/pypi/django-taggit
+.. _twitter: https://pypi.python.org/pypi/twitter
+.. _python-instagram: https://pypi.python.org/pypi/python-instagram
+.. _facebook-sdk: https://pypi.python.org/pypi/facebook-sdk
+.. _feedparser: https://pypi.python.org/pypi/feedparser
+.. _google-api-python-client: https://pypi.python.org/pypi/google-api-python-client
+.. _django-cms: http://www.django-cms.org/
+
 emencia-django-social-aggregator
 ================================
 
@@ -7,6 +15,8 @@ A command script will recover data from social network/external site from
 **Aggregator** info that you specified into admin.It will stock them into
 database, like **Ressource** and you could manage them into admin. You could
 regroup **Ressource** by **Feed** and return them into JSON or HTML view.
+
+Optionally you can use it as a plugin for `django-cms`_ if installed.
 
 Requires
 ********
@@ -22,10 +32,6 @@ Requires
 Install
 *******
 
-In your urls.py : ::
-
-    url(r'^socialaggregator/', include('socialaggregator.urls')),
-
 In your settings.INSTALLED_APPS : ::
    
     'taggit',
@@ -35,10 +41,25 @@ Then import basic settings in your settings file : ::
 
     from socialaggregator.settings import *
 
-.. _django-taggit: https://pypi.python.org/pypi/django-taggit
-.. _twitter: https://pypi.python.org/pypi/twitter
-.. _python-instagram: https://pypi.python.org/pypi/python-instagram
-.. _facebook-sdk: https://pypi.python.org/pypi/facebook-sdk
-.. _feedparser: https://pypi.python.org/pypi/feedparser
-.. _google-api-python-client: https://pypi.python.org/pypi/google-api-python-client
+Usage
+*****
 
+As a view
+---------
+
+First, add this row in your ``urls.py`` : ::
+
+    url(r'^socialaggregator/', include('socialaggregator.urls')),
+
+Then you will access to your feed ressources list as a HTML page with an url like this : ::
+
+    /socialaggregator/feed/sample/
+
+Or you can use the JSON version : ::
+
+    /socialaggregator/feed/sample/?format=json
+
+As a django-cms plugin
+----------------------
+
+Just use the plugin named "Socialaggregator Feed Plugin" in your page with selecting the feed you want to list the ressources. The template ``socialaggregator/cms_plugin_feed.html`` will be used to display the feed ressources, override it in your project to use your own HTML layout.

@@ -168,3 +168,16 @@ class Ressource(models.Model):
         ordering = ('-priority', 'name')
         verbose_name = _('ressource')
         verbose_name_plural = _('ressources')
+
+
+# Optional plugin for DjangoCMS if installed
+try:
+    from cms.models import CMSPlugin
+except ImportError:
+    pass
+else:
+    class FeedPlugin(CMSPlugin):
+        feed = models.ForeignKey('socialaggregator.Feed', related_name='plugins')
+
+        def __unicode__(self):
+            return self.feed.name

@@ -1,0 +1,30 @@
+<div id="content-main">
+    <h2>{{ feed_instance.name }}</h2>
+    {% for ressource in feed_ressources %}
+    <div class="contentBlock">
+        <div class="ressource">
+            <h3>{{ ressource.name }}</h3>
+            {% if ressource.description %}
+                <p>{{ ressource.description }}</p>
+            {% endif %}
+            {% if ressource.media_url %}
+                <p>
+                    <a href="{{ ressource.media_url }}">
+                        {% if ressource.button_label %}
+                            {{ ressource.button_label }}
+                        {% else %}
+                            See on website
+                        {% endif %}
+                    </a>
+                </p>
+            {% endif %}
+        </div>
+        <div class="block_posted">
+            {% if ressource.author %}
+                <h4>{{ ressource.author }}</h4>
+            {% endif %}
+            <p>{{ ressource.ressource_date }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
