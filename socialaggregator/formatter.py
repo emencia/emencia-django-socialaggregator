@@ -32,8 +32,10 @@ class RessourceFormatterDefault(RessourceFormatterBase):
         'edsa_twitter': 'twitter',
         'edsa_instagram': 'instagram',
         'edsa_article': 'article',
+        'edsa_wordpress_rss': 'article',
         'edsa_pinterest': 'pinterest',
         'edsa_youtube': 'youtube',
+        'edsa_youtube_search': 'youtube',
     }
     # CSS classes linked to social content type key name
     text_display_classes = {
