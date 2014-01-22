@@ -6,6 +6,16 @@ from django.utils.translation import ugettext_lazy as _
 
 from taggit.managers import TaggableManager
 
+from django.core.exceptions import ValidationError
+from django.template.defaultfilters import filesizeformat
+
+def validate_image_size(value):
+    size = settings.EDSA_RESSOURCE_IMAGE_SIZE
+    if size != 0:
+        if value.size > size * 1024:
+            raise ValidationError(u'The image size (%s) is bigger than %s' % (
+                    filesizeformat(value.size), filesizeformat(size * 1024)))
+
 
 def build_social_plugins_list():
     return [(plugin, datas["NAME"]) for plugin, datas in
@@ -101,8 +111,8 @@ class Ressource(models.Model):
     slug = models.SlugField(_('slug'), unique=True, max_length=100)
     description = models.TextField(_('description'), blank=True)
     short_description = models.TextField(_('short description'), blank=True)
-    image = models.ImageField(_('image'), upload_to='social_aggregator',
-                              blank=True)
+    image = models.ImageField(_('image'), validators=[validate_image_size],
+                              upload_to='social_aggregator', blank=True)
     thumbnail = models.ImageField(_('thumbnail'),
                                   upload_to='social_aggregator/thumbs',
                                   blank=True)

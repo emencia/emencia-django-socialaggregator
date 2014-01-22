@@ -27,3 +27,6 @@ EDSA_PLUGINS = {
 }
 
 EDSA_PAGINATION = 20
+
+# Image size limite (in Ko, 0 is no limit)
+EDSA_RESSOURCE_IMAGE_SIZE = 0
