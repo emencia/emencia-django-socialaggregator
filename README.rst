@@ -63,3 +63,19 @@ As a django-cms plugin
 ----------------------
 
 Just use the plugin named "Socialaggregator Feed Plugin" in your page with selecting the feed you want to list the ressources. The template ``socialaggregator/cms_plugin_feed.html`` will be used to display the feed ressources, override it in your project to use your own HTML layout.
+
+Unified content datas
+---------------------
+
+Because feeds can contains ressources from many social networks, a method ``get_unified_render`` exist on the ``Ressource`` model. The method use formatter loaded from the setting ``RESSOURCE_FORMATTER`` if defined, else it will load the default formatter ``socialaggregator.formatter.RessourceFormatterDefault``.
+
+The default formatter return a dict with an unified data scheme, so you can use it in your template without to test if a field is filled or not, etc.. This is optionnal, you can still directly use the ressource instance and play with its fields. You can use it like so : ::
+
+    {% for ressource_item in feed_ressources %}{% with ressource_item.get_unified_render as ressource %}
+    <li>
+        {% if ressource.title %}<h2>{{ ressource.title }}</h2>{% endif %}
+        {% if ressource.description %}<p>{{ ressource.description|safe|linebreaksbr }}</p>{% endif %}
+    </li>
+    {% endwith %}{% endfor %}
+
+Note that the formatter is not automatically applied, so the JSON view output still return ressource instances serialized.
