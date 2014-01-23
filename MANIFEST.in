@@ -1,6 +1,5 @@
 include MANIFEST.in
-include docs/LICENSE
-recursive-include docs *.txt
-recursive-include socialaggregator *.py
+include LICENCE.txt
+recursive-include docs *.rst
 recursive-include socialaggregator/templates *
 recursive-include socialaggregator/locale *

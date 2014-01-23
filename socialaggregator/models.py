@@ -3,6 +3,7 @@ from datetime import datetime
 from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+from django.utils.importlib import import_module
 
 from taggit.managers import TaggableManager
 
@@ -174,7 +175,37 @@ class Ressource(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_unified_render(self):
+        """
+        Get the formatter for ressource datas then return the unified data render
+        """
+        formatter_path = getattr(settings, "RESSOURCE_FORMATTER", "socialaggregator.formatter.RessourceFormatterDefault")
+        dot = formatter_path.rindex('.')
+        module_name = formatter_path[:dot]
+        class_name = formatter_path[dot + 1:] # Assume last item is the class to load
+        try:
+            _class = getattr(import_module(module_name), class_name)
+        except ImportError:
+            raise ImportError("'%s' cannot be imported from the setting 'RESSOURCE_FORMATTER'" % formatter_path)
+        except AttributeError:
+            raise AttributeError("'%s' cannot be imported from the setting 'RESSOURCE_FORMATTER'" % formatter_path)
+        else:
+            return _class(self).render()
+
     class Meta:
         ordering = ('-priority', 'name')
         verbose_name = _('ressource')
         verbose_name_plural = _('ressources')
+
+
+# Optional plugin for DjangoCMS if installed
+try:
+    from cms.models import CMSPlugin
+except ImportError:
+    pass
+else:
+    class FeedPlugin(CMSPlugin):
+        feed = models.ForeignKey('socialaggregator.Feed', related_name='plugins')
+
+        def __unicode__(self):
+            return self.feed.name

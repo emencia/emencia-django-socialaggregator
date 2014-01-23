@@ -1,11 +1,12 @@
 {% extends "skeleton.html" %}
+
 {% block base_content %}
 <div id="content-main">
-    <h1> Ressources</h1>
+    <h2> Ressources</h2>
     {% for ob in object_list %}
     <div class="contentBlock">
         <div class="ressource">
-            <h2>{{ ob.name }}</h2>
+            <h3>{{ ob.name }}</h3>
             {% if ob.description %}
                 <p>{{ ob.description }}</p>
             {% endif %}
@@ -23,9 +24,9 @@
         </div>
         <div class="block_posted">
             {% if ob.author %}
-                <h5>{{ ob.author }}</h5>
+                <h4>{{ ob.author }}</h4>
             {% endif %}
-            {{ ob.ressource_date }}
+            <p>{{ ob.ressource_date }}</p>
         </div>
     </div>
     {% endfor %}

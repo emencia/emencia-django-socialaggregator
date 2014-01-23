@@ -1,6 +1,5 @@
 """Urls for emencia-django-socialaggregator"""
-from django.conf.urls.defaults import url
-from django.conf.urls.defaults import patterns
+from django.conf.urls import url, patterns
 
 from views import RessourceListView
 from views import RessourceByFeedListView
