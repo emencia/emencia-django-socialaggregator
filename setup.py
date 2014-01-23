@@ -6,7 +6,7 @@ setup(name='emencia-django-socialaggregator',
       version=__import__('socialaggregator').__version__,
       description='Django app for aggregate some feeds from social networks.',
       long_description="%s\n%s" % (open('README.rst').read(),
-                       open(os.path.join('docs', 'HISTORY.txt')).read()),
+                       open(os.path.join('docs', 'changelog.rst')).read()),
       keywords='django, emencia, social networks, aggregation',
       classifiers=[
           'Framework :: Django',
