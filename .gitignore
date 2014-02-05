@@ -1,5 +1,17 @@
+local_settings.py
+
+#buildout's specific
+.installed.cfg
+eggs/*
+bin/*
+build/*
+dist/*
+
+#egg's specific
+*.egg-info
+
+#defaults
+*.pyc
+*.pyo
 *.log
 *.pot
-*.pyc
-local_settings.py
-emencia_django_socialaggregator.egg-info/
