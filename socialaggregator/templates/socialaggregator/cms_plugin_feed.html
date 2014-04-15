@@ -4,9 +4,7 @@
     <div class="contentBlock">
         <div class="ressource">
             <h3>{{ ressource.name }}</h3>
-            {% if ressource.description %}
-                <p>{{ ressource.description }}</p>
-            {% endif %}
+            {% if ressource.description %}<p>{{ ressource.description|safe|linebreaksbr }}</p>{% endif %}
             {% if ressource.media_url %}
                 <p>
                     <a href="{{ ressource.media_url }}">

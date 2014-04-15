@@ -41,6 +41,8 @@ Then import basic settings in your settings file : ::
 
     from socialaggregator.settings import *
 
+.. _intro_usage:
+
 Usage
 *****
 
@@ -59,10 +61,39 @@ Or you can use the JSON version : ::
 
     /socialaggregator/feed/sample/?format=json
 
+Also there is a view to display **all** resssources from all feeds : ::
+
+    /socialaggregator/
+
+The default template use in these views comes from ``settings.EDSA_PLUGIN_TEMPLATE``.
+
+As a templatetag
+----------------
+
+The tag syntax is the following : ::
+    
+    {% ressource_by_feed slug template_name %}
+
+Where : 
+
+* ``slug`` argument is a String containing the slug feed;
+* ``template_name`` is a String containing the template path to use, default to ``settings.EDSA_TAG_TEMPLATE``;
+
+So for example, load the templatetag and use the tag giving it the feed slug to use to list its ressources : ::
+
+    {% load socialaggregator_tags %}
+
+    <div class="row">
+        {% ressource_by_feed 'parrot-apps-usa' %}
+    </div>
+
+
 As a django-cms plugin
 ----------------------
 
-Just use the plugin named "Socialaggregator Feed Plugin" in your page with selecting the feed you want to list the ressources. The template ``socialaggregator/cms_plugin_feed.html`` will be used to display the feed ressources, override it in your project to use your own HTML layout.
+Just use the plugin named "Socialaggregator Feed Plugin" in your page with selecting the feed you want to list the ressources.
+
+The default used template path comes from ``settings.EDSA_PLUGIN_TEMPLATE`` to display the feed ressources, change it in your project to use your own HTML layout.
 
 Unified content datas
 ---------------------

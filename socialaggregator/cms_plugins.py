@@ -18,7 +18,7 @@ class FeedPlugin(CMSPluginBase):
     """
     model = FeedPluginModel # Model where data about this plugin is saved
     name = _("Socialaggregator Feed Plugin",) # Name of the plugin
-    render_template = "socialaggregator/cms_plugin_feed.html" # template to render the plugin with
+    render_template = settings.EDSA_PLUGIN_TEMPLATE # template to render the plugin with
     
     def render(self, context, instance, placeholder):
         context.update({

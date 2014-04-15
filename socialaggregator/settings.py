@@ -28,5 +28,9 @@ EDSA_PLUGINS = {
 
 EDSA_PAGINATION = 20
 
+EDSA_VIEW_TEMPLATE = 'socialaggregator/ressource_list.html'
+EDSA_TAG_TEMPLATE = 'socialaggregator/ressource_list_tag.html'
+EDSA_PLUGIN_TEMPLATE = 'socialaggregator/cms_plugin_feed.html'
+
 # Image size limite (in Ko, 0 is no limit)
 EDSA_RESSOURCE_IMAGE_SIZE = 0

@@ -31,10 +31,16 @@ class JSONResponseMixin(object):
 
 
 class RessourceListView(JSONResponseMixin, ListView):
-
+    """
+    Display all ressources for all feeds
+    """
     model = Ressource
     paginate_by = settings.EDSA_PAGINATION
     queryset = Ressource.activated.order_by('priority', '-ressource_date')
+    template_name = settings.EDSA_VIEW_TEMPLATE
+    
+    def get_template_names(self):
+        return [self.template_name]
 
     def render_to_response(self, context):
         # Look for a 'format=json' GET argument
@@ -47,7 +53,9 @@ class RessourceListView(JSONResponseMixin, ListView):
 
 
 class RessourceByFeedListView(RessourceListView):
-
+    """
+    Only display ressources from specified feed
+    """
     def get_queryset(self):
         queryset = super(RessourceByFeedListView, self).get_queryset()
         slug = self.kwargs['slug']

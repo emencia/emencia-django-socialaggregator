@@ -1,0 +1,26 @@
+{% for ressource in ressources %}
+<div class="contentBlock">
+    <div class="ressource">
+        <h3>{{ ressource.name }}</h3>
+        {% if ressource.description %}<p>{{ ressource.description|safe|linebreaksbr }}</p>{% endif %}
+        {% if ressource.media_url %}
+            <p>
+                <a href="{{ ressource.media_url }}">
+                    {% if ressource.button_label %}
+                        {{ ressource.button_label }}
+                    {% else %}
+                        See on website
+                    {% endif %}
+                </a>
+            </p>
+        {% endif %}
+    </div>
+    <div class="credits text-right">
+        {% if ressource.author %}
+            <h4>{{ ressource.author }}</h4>
+        {% endif %}
+        <p>{{ ressource.ressource_date }}</p>
+    </div>
+</div>
+{% if not forloop.last %}<hr>{% endif %}
+{% endfor %}

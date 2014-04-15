@@ -1,20 +1,18 @@
 {% extends "skeleton.html" %}
 
 {% block base_content %}
-<div id="content-main">
+<div class="row">
     <h2> Ressources</h2>
-    {% for ob in object_list %}
+    {% for ressource in object_list %}
     <div class="contentBlock">
         <div class="ressource">
-            <h3>{{ ob.name }}</h3>
-            {% if ob.description %}
-                <p>{{ ob.description }}</p>
-            {% endif %}
-            {% if ob.media_url %}
+            <h3>{{ ressource.name }}</h3>
+            {% if ressource.description %}<p>{{ ressource.description|safe|linebreaksbr }}</p>{% endif %}
+            {% if ressource.media_url %}
                 <p>
-                    <a href="{{ ob.media_url }}">
-                        {% if ob.button_label %}
-                            {{ ob.button_label }}
+                    <a href="{{ ressource.media_url }}">
+                        {% if ressource.button_label %}
+                            {{ ressource.button_label }}
                         {% else %}
                             See on website
                         {% endif %}
@@ -22,28 +20,31 @@
                 </p>
             {% endif %}
         </div>
-        <div class="block_posted">
-            {% if ob.author %}
-                <h4>{{ ob.author }}</h4>
+        <div class="credits text-right">
+            {% if ressource.author %}
+                <h4>{{ ressource.author }}</h4>
             {% endif %}
-            <p>{{ ob.ressource_date }}</p>
+            <p>{{ ressource.ressource_date }}</p>
         </div>
     </div>
+    {% if not forloop.last %}<hr>{% endif %}
     {% endfor %}
-    <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
-
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-            {% endif %}
-        </span>
+</div>
+    
+<div class="row">
+    <hr>
+    <div class="small-4 columns text-left"><p>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+    </p></div>
+    <div class="small-4 columns text-center">
+        <p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
     </div>
+    <div class="small-4 columns text-right"><p>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+        {% endif %}
+    </p></div>
 </div>
 {% endblock %}
