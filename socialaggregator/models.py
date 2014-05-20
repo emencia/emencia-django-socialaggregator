@@ -23,7 +23,7 @@ def build_social_plugins_list():
             settings.EDSA_PLUGINS.items()]
 
 SOCIAL_PLUGINS = build_social_plugins_list()
-
+SOCIAL_LIST = settings.EDSA_RESSOURCE_BASE_MEDIA_TYPES + SOCIAL_PLUGINS
 
 class Feed(models.Model):
     """Model for group ressource by feed"""
@@ -79,34 +79,6 @@ class ActivatedManager(RessourceManager):
 
 class Ressource(models.Model):
     """Model representing a ressource"""
-
-    VIEW_SIZES = (('default', _('default')),
-                  ('xsmall', _('Xsmall')),
-                  ('small', _('small')),
-                  ('medium', _('medium')),
-                  ('large', _('large')),
-                  ('xlarge', _('Xlarge')),
-                  )
-
-    TEXT_DISPLAY = (('default', _('default')),
-                    ('bottom', _('bottom')),
-                    ('top', _('top')),
-                    )
-
-    BUTTON_COLOR = (('white', _('white')),
-                    ('black', _('black')),
-                    ('primary', _('primary')),
-                    ('secondary', _('secondary')),
-                    ('tertiary', _('tertiary')),
-                    )
-
-    MEDIA_TYPE = (('url', _('url')),
-                  ('image', _('image')),
-                  ('video', _('video')),
-                  )
-
-    SOCIAL_LIST = [('edsa_article', 'Article'), ] + SOCIAL_PLUGINS
-
     # ressource main infos
     name = models.CharField(_('name'), max_length=250)
     slug = models.SlugField(_('slug'), unique=True, max_length=100)
@@ -119,7 +91,7 @@ class Ressource(models.Model):
                                   blank=True)
     media_url = models.URLField(_('media url'), blank=True, max_length=500)
     media_url_type = models.CharField(_('media url type'), max_length=100,
-                                      blank=True, choices=MEDIA_TYPE)
+                                      blank=True, choices=settings.EDSA_RESSOURCE_MEDIA_TYPE)
     # extra infos
     priority = models.IntegerField(_('display priority'), default=100)
     activate = models.BooleanField(_('activate'), default=False)
@@ -139,15 +111,15 @@ class Ressource(models.Model):
     # display infos
     favorite = models.BooleanField(_('favorite'), default=False)
     view_size = models.CharField(_('view size'), max_length=100,
-                                 choices=VIEW_SIZES, blank=False,
+                                 choices=settings.EDSA_RESSOURCE_VIEW_SIZES, blank=False,
                                  default='default')
     text_display = models.CharField(_('text display'), max_length=100,
-                                    choices=TEXT_DISPLAY, blank=False,
+                                    choices=settings.EDSA_RESSOURCE_TEXT_DISPLAY, blank=False,
                                     default='default')
     button_label = models.CharField(_('button label'), max_length=100,
                                     blank=True)
     button_color = models.CharField(_('button color'), max_length=100,
-                                    choices=BUTTON_COLOR, blank=False,
+                                    choices=settings.EDSA_RESSOURCE_BUTTON_COLOR, blank=False,
                                     default='black')
 
     # META DATA
@@ -168,9 +140,9 @@ class Ressource(models.Model):
         self.update_date = datetime.now()
         super(Ressource, self).save(*args, **kwargs)
 
-    @models.permalink
-    def get_absolute_url(self):
-        return ('social_aggregator_ressource_detail', (self.slug,))
+    #@models.permalink
+    #def get_absolute_url(self):
+        #return ('social_aggregator_ressource_detail', (self.slug,))
 
     def __unicode__(self):
         return self.name
