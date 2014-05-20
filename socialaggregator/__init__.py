@@ -1,5 +1,5 @@
 """emencia-django-socialaggregator"""
-__version__ = '0.2.4'
+__version__ = '0.2.5'
 __license__ = 'AGPL License'
 
 __author__ = 'rage2000'

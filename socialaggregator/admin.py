@@ -59,7 +59,7 @@ class RessourceAdmin(admin.ModelAdmin):
     list_display = ('name', 'author', 'priority', 'view_size', 'language',
                     'social_type', 'query', 'ressource_date', 'activate',
                     'updated')
-    list_editable = ('priority',)
+    list_editable = ('priority','view_size',)
     list_filter = ('social_type', 'activate', 'updated', 'feeds', 'language')
     ordering = ['updated', '-ressource_date', 'query']
     exclude = ('updated', 'update_date',)
