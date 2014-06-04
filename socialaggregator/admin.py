@@ -60,7 +60,7 @@ class RessourceAdmin(admin.ModelAdmin):
                     'social_type', 'query', 'ressource_date', 'activate',
                     'updated')
     list_editable = ('priority','view_size','activate',)
-    list_filter = ('social_type', 'activate', 'updated', 'feeds', 'language')
+    list_filter = ('social_type', 'feeds', 'view_size', 'language', 'activate', 'updated')
     ordering = ['updated', '-ressource_date', 'query']
     exclude = ('updated', 'update_date',)
     actions = [make_activated, make_unactivated, make_duplicate]
