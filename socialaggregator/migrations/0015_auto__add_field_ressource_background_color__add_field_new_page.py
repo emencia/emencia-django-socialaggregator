@@ -52,11 +52,6 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '250'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '100'})
         },
-        u'socialaggregator.feedplugin': {
-            'Meta': {'object_name': 'FeedPlugin', 'db_table': "u'cmsplugin_feedplugin'", '_ormbases': ['cms.CMSPlugin']},
-            u'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
-            'feed': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'plugins'", 'to': u"orm['socialaggregator.Feed']"})
-        },
         u'socialaggregator.ressource': {
             'Meta': {'ordering': "('-priority', 'name')", 'object_name': 'Ressource'},
             'activate': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
