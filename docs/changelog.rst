@@ -3,6 +3,11 @@
 Changelog
 =========
 
+0.2.8
+*****
+
+* Add in Ressource model some display options (``background_color`` and ``new_page``)
+
 0.2.3
 *****
 

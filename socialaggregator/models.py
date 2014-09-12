@@ -121,6 +121,9 @@ class Ressource(models.Model):
     button_color = models.CharField(_('button color'), max_length=100,
                                     choices=settings.EDSA_RESSOURCE_BUTTON_COLOR, blank=False,
                                     default='black')
+    background_color = models.CharField(_('background color'), max_length=250,
+                                        blank=True,)
+    new_page = models.BooleanField(_('open in new page'), default=False)
 
     # META DATA
     creation_date = models.DateTimeField(_('creation date'),
