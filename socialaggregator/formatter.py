@@ -8,15 +8,15 @@ class RessourceFormatterBase(object):
     """
     def __init__(self, instance):
         self.instance = instance
-   
+ 
     def render(self):
         return self.instance
-   
+ 
 class RessourceFormatterDefault(RessourceFormatterBase):
     """
     Default formatter, its goal is to unify various data types from social networks in
     only one format to avoid to manage many various cases with all social networks
-   
+ 
     This formatter is heavily linked to Foundation5 and private CSS that is not shipped
     in the app, so you will have to implement it if needed
     """
@@ -43,7 +43,7 @@ class RessourceFormatterDefault(RessourceFormatterBase):
         'top' : 'item-top',
         'bottom' : 'item-bottom',
     }
-   
+ 
     def render(self):
         return {
             "id": self.instance.pk,
@@ -58,13 +58,13 @@ class RessourceFormatterDefault(RessourceFormatterBase):
             "image": self.get_image(),
             "media": self.get_content_media(),
             "url": self.get_content_url(),
-            "open_window": self.get_open_window(),
+            "link": self.get_link(),
             "background": self.get_background(),
         }
-   
+ 
     def has_subblock(self):
         return (self.instance.author or self.instance.ressource_date)
-   
+ 
     def get_css_classes(self):
         css_classes = []
         if self.instance.view_size == 'default':
@@ -76,20 +76,20 @@ class RessourceFormatterDefault(RessourceFormatterBase):
         if self.get_content_url():
             css_classes.append("clickable")
         return " ".join(css_classes)
-   
+ 
     def get_title(self):
         if self.get_type() in ('twitter', 'facebook', 'instagram'):
             return None
         return self.instance.name
-   
+ 
     def get_description(self):
         return self.instance.description or self.instance.short_description
-   
+ 
     def get_content_url(self):
         if self.instance.media_url and self.get_button() is None:
             return self.instance.media_url;
         return None
-   
+ 
     def get_button(self):
         if self.instance.button_label and self.instance.media_url:
             return {
@@ -98,7 +98,7 @@ class RessourceFormatterDefault(RessourceFormatterBase):
                 'url': self.instance.media_url,
             }
         return None
-   
+ 
     def get_background(self):
         if self.instance.background_color:
             return {
@@ -113,15 +113,15 @@ class RessourceFormatterDefault(RessourceFormatterBase):
                 'open_window': self.instance.open_window,
             }
         return None
-   
+ 
     def get_type(self):
         return self.type_classes[self.instance.social_type]
-   
+ 
     def get_author(self):
         if self.get_type() == 'youtube':
             return None
         return self.instance.author
-   
+ 
     def get_content_media(self):
         if self.instance.media_url:
             return {
@@ -129,12 +129,12 @@ class RessourceFormatterDefault(RessourceFormatterBase):
                 'kind': self.instance.media_url_type,
             }
         return None
-   
+ 
     def get_date(self):
         if self.get_type() == 'youtube':
             return None
         return self.instance.ressource_date
-   
+ 
     def get_image(self):
         if self.instance.image:
             return self.instance.image.url
