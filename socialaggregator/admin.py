@@ -68,7 +68,7 @@ class RessourceAdmin(admin.ModelAdmin):
     fieldsets = ((_('Main infos'), {'fields': ('name', 'slug', 'description',
                                                'short_description', 'image',
                                                'thumbnail', 'media_url',
-                                               'media_url_type')}),
+                                               'media_url_type','new_page')}),
                  (_('Extra infos'), {'fields': ('priority', 'activate',
                                                 'author', 'language', 'feeds',
                                                 'ressource_date', 'tags')}),
@@ -79,7 +79,6 @@ class RessourceAdmin(admin.ModelAdmin):
                                                   'text_display',
                                                   'button_label',
                                                   'button_color',
-                                                  'background_color',
-                                                  'new_page')}))
+                                                  'background_color')}))
 
 admin.site.register(Ressource, RessourceAdmin)
