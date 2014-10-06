@@ -13,6 +13,7 @@ class FeedAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
     search_fields = ('name', 'slug',)
     date_hierarchy = 'creation_date'
+    list_filter = ('creation_date',)
     list_display = ('name', 'slug', 'creation_date')
 
 admin.site.register(Feed, FeedAdmin)
@@ -22,7 +23,7 @@ class AggregatorAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
     search_fields = ('name', 'slug', 'query',)
     date_hierarchy = 'creation_date'
-    list_filter = ('social_plugin',)
+    list_filter = ('social_plugin', 'creation_date',)
     list_display = ('name', 'slug', 'query', 'social_plugin', 'creation_date')
 
 admin.site.register(Aggregator, AggregatorAdmin)
