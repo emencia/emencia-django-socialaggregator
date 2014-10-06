@@ -3,6 +3,11 @@
 Changelog
 =========
 
+0.2.9
+*****
+
+* Improved admin view for Feeds and Aggregators models
+
 0.2.8
 *****
 
