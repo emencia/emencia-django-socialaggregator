@@ -3,15 +3,22 @@
 Changelog
 =========
 
+0.3
+***
+
+* Drop support for *DjangoCMS 2.x* and *Django<1.6* in profit of *DjangoCMS 3.x* and *Django>=1.6*;
+* Use *django-filer* to manage image fields in models;
+* Make the app menu in the cms toolbar;
+
 0.2.9
 *****
 
-* Improved admin view for Feeds and Aggregators models
+* Improved admin view for Feeds and Aggregators models;
 
 0.2.8
 *****
 
-* Add in Ressource model some display options (``background_color`` and ``new_page``)
+* Add in Ressource model some display options (``background_color`` and ``new_page``);
 
 0.2.3
 *****

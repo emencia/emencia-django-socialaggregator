@@ -20,11 +20,12 @@ setup(
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
         'License :: OSI Approved :: GNU Affero General Public License v3',
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
     install_requires=[
         'setuptools',
+        'django-filer>=0.9.7',
         'django-taggit',
         'twitter',
         'python-instagram',

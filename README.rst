@@ -18,6 +18,14 @@ regroup **Ressource** by **Feed** and return them into JSON or HTML view.
 
 Optionally you can use it as a plugin for `django-cms`_ if installed.
 
+Since version ``0.3``, the *DjangoCMS 2.x* and *Django<1.6* has been dropped. A ``djangocms_2`` branch has been opened to maintain ``0.2.x`` version serie if needed.
+
+Links
+*****
+
+* Download his `PyPi package <https://pypi.python.org/pypi/emencia-django-socialaggregator>`_;
+* Clone it on his `Github repository <https://github.com/emencia/emencia-django-socialaggregator>`_;
+
 Requires
 ********
 
