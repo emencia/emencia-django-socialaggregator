@@ -25,14 +25,13 @@ setup(
     ],
     install_requires=[
         'setuptools',
-        'django-filer>=0.9.7',
         'django-taggit',
         'twitter',
         'python-instagram',
         'facebook-sdk',
         'feedparser',
         'google-api-python-client',
-        'django'
+        'django-filebrowser-no-grappelli>=3.5.6'
     ],
     include_package_data=True,
     zip_safe=False

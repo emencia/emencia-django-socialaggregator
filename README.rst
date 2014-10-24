@@ -37,7 +37,7 @@ Requires
 * `facebook-sdk`_;
 * `feedparser`_;
 * `google-api-python-client`_;
-* `django-filebrowser`_ >= 3.5.7 or `django-filebrowser-no-grappelli`_ >= 3.5.7 (depends if you use django-grapelli or not);
+* `django-filebrowser`_ >= 3.5.6 or `django-filebrowser-no-grappelli`_ >= 3.5.6 (depends if you use django-grapelli or not);
 
 Install
 *******

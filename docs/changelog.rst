@@ -3,7 +3,12 @@
 Changelog
 =========
 
-0.3.1
+0.3.2
+*****
+
+* Fix dependancies in ``setup.py``;
+
+0.3.2
 *****
 
 * Replace *django-filer* usage in profit of *django-filebrowser*;
