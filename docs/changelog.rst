@@ -3,6 +3,12 @@
 Changelog
 =========
 
+0.3.1
+*****
+
+* Replace *django-filer* usage in profit of *django-filebrowser*;
+* Replace previous migration (0016) to suit this change;
+
 0.3
 ***
 

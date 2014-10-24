@@ -7,7 +7,8 @@ from django.utils.importlib import import_module
 
 from taggit.managers import TaggableManager
 
-from filer.fields.image import FilerImageField
+#from filer.fields.image import FilerImageField
+from filebrowser.fields import FileBrowseField
 
 from django.core.exceptions import ValidationError
 from django.template.defaultfilters import filesizeformat
@@ -86,13 +87,8 @@ class Ressource(models.Model):
     slug = models.SlugField(_('slug'), unique=True, max_length=100)
     description = models.TextField(_('description'), blank=True)
     short_description = models.TextField(_('short description'), blank=True)
-    #image = models.ImageField(_('image'), validators=[validate_image_size],
-                              #upload_to='social_aggregator', blank=True)
-    #thumbnail = models.ImageField(_('thumbnail'),
-                                  #upload_to='social_aggregator/thumbs',
-                                  #blank=True)
-    image = FilerImageField(verbose_name=_('image'), related_name="edsa_ressource_image", validators=[validate_image_size], null=True, blank=True, default=None)
-    thumbnail = FilerImageField(verbose_name=_('thumbnail'), related_name="edsa_ressource_thumbnail", null=True, blank=True, default=None)
+    image = FileBrowseField(_('image'), max_length=255, null=True, blank=True, default=None)
+    thumbnail = FileBrowseField(_('thumbnail'), max_length=255, null=True, blank=True, default=None)
     media_url = models.URLField(_('media url'), blank=True, max_length=500)
     media_url_type = models.CharField(_('media url type'), max_length=100,
                                       blank=True, choices=settings.EDSA_RESSOURCE_MEDIA_TYPE)

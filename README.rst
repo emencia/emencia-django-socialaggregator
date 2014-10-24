@@ -5,6 +5,8 @@
 .. _feedparser: https://pypi.python.org/pypi/feedparser
 .. _google-api-python-client: https://pypi.python.org/pypi/google-api-python-client
 .. _django-cms: http://www.django-cms.org/
+.. _django-filebrowser: https://github.com/sehmaschine/django-filebrowser
+.. _django-filebrowser-no-grappelli: https://github.com/smacker/django-filebrowser-no-grappelli
 
 emencia-django-social-aggregator
 ================================
@@ -29,13 +31,13 @@ Links
 Requires
 ********
 
-* `django-taggit`_
-* `twitter`_
-* `python-instagram`_
-* `facebook-sdk`_
-* `feedparser`_
-* `google-api-python-client`_
-
+* `django-taggit`_;
+* `twitter`_;
+* `python-instagram`_;
+* `facebook-sdk`_;
+* `feedparser`_;
+* `google-api-python-client`_;
+* `django-filebrowser`_ >= 3.5.7 or `django-filebrowser-no-grappelli`_ >= 3.5.7 (depends if you use django-grapelli or not);
 
 Install
 *******
