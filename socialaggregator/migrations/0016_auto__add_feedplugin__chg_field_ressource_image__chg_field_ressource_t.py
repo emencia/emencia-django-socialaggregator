@@ -8,14 +8,6 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'FeedPlugin'
-        db.create_table(u'socialaggregator_feedplugin', (
-            (u'cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
-            ('feed', self.gf('django.db.models.fields.related.ForeignKey')(related_name='plugins', to=orm['socialaggregator.Feed'])),
-        ))
-        db.send_create_signal(u'socialaggregator', ['FeedPlugin'])
-
-
         # Changing field 'Ressource.image'
         db.alter_column(u'socialaggregator_ressource', 'image', self.gf('filebrowser.fields.FileBrowseField')(max_length=255, null=True))
 
@@ -23,10 +15,6 @@ class Migration(SchemaMigration):
         db.alter_column(u'socialaggregator_ressource', 'thumbnail', self.gf('filebrowser.fields.FileBrowseField')(max_length=255, null=True))
 
     def backwards(self, orm):
-        # Deleting model 'FeedPlugin'
-        db.delete_table(u'socialaggregator_feedplugin')
-
-
         # User chose to not deal with backwards NULL issues for 'Ressource.image'
         raise RuntimeError("Cannot reverse this migration. 'Ressource.image' and its values cannot be restored.")
         
@@ -42,27 +30,6 @@ class Migration(SchemaMigration):
         db.alter_column(u'socialaggregator_ressource', 'thumbnail', self.gf('django.db.models.fields.files.ImageField')(max_length=100))
 
     models = {
-        'cms.cmsplugin': {
-            'Meta': {'object_name': 'CMSPlugin'},
-            'changed_date': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'language': ('django.db.models.fields.CharField', [], {'max_length': '15', 'db_index': 'True'}),
-            'level': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
-            'lft': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
-            'parent': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['cms.CMSPlugin']", 'null': 'True', 'blank': 'True'}),
-            'placeholder': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['cms.Placeholder']", 'null': 'True'}),
-            'plugin_type': ('django.db.models.fields.CharField', [], {'max_length': '50', 'db_index': 'True'}),
-            'position': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True', 'blank': 'True'}),
-            'rght': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
-            'tree_id': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'})
-        },
-        'cms.placeholder': {
-            'Meta': {'object_name': 'Placeholder'},
-            'default_width': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'slot': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_index': 'True'})
-        },
         u'socialaggregator.aggregator': {
             'Meta': {'object_name': 'Aggregator'},
             'creation_date': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
@@ -79,11 +46,6 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '250'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '100'})
-        },
-        u'socialaggregator.feedplugin': {
-            'Meta': {'object_name': 'FeedPlugin', '_ormbases': ['cms.CMSPlugin']},
-            u'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
-            'feed': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'plugins'", 'to': u"orm['socialaggregator.Feed']"})
         },
         u'socialaggregator.ressource': {
             'Meta': {'ordering': "('-priority', 'name')", 'object_name': 'Ressource'},

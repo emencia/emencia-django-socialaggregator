@@ -37,7 +37,7 @@ Requires
 * `facebook-sdk`_;
 * `feedparser`_;
 * `google-api-python-client`_;
-* `django-filebrowser`_ >= 3.5.6 or `django-filebrowser-no-grappelli`_ >= 3.5.6 (depends if you use django-grapelli or not);
+* `django-filebrowser-no-grappelli`_ >= 3.5.6;
 
 Install
 *******
@@ -45,7 +45,16 @@ Install
 In your settings.INSTALLED_APPS : ::
    
     'taggit',
+    'filebrowser',
     'socialaggregator',
+
+And some `django-filebrowser-no-grappelli`_ basic settings (see its documentation for more details) : ::
+
+    FILEBROWSER_VERSIONS_BASEDIR = '_uploads_versions'
+
+    FILEBROWSER_MAX_UPLOAD_SIZE = 10*1024*1024 # 10 Mb
+
+    FILEBROWSER_NORMALIZE_FILENAME = True
    
 Then import basic settings in your settings file : ::
 
