@@ -59,6 +59,7 @@ class RessourceFormatterDefault(RessourceFormatterBase):
             "media": self.get_content_media(),
             "url": self.get_content_url(),
             "link": self.get_link(),
+            "external_url": self.get_external_url(),
             "background": self.get_background(),
         }
 
@@ -76,6 +77,11 @@ class RessourceFormatterDefault(RessourceFormatterBase):
         if self.get_content_url():
             css_classes.append("clickable")
         return " ".join(css_classes)
+
+    def get_external_url(self):
+        if not self.instance.has_external_url or not self.instance.external_url:
+            return None
+        return self.instance.external_url
 
     def get_title(self):
         if self.get_type() in ('twitter', 'facebook', 'instagram'):

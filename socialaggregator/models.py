@@ -99,6 +99,8 @@ class Ressource(models.Model):
     language = models.CharField(_('language'), max_length=2, blank=True)
     feeds = models.ManyToManyField(Feed, verbose_name=_('feeds'))
     ressource_date = models.DateTimeField(_('ressource date'))
+    has_external_url = models.BooleanField(_('has external url'), default=False)
+    external_url = models.CharField(_('external url'), default='', blank=True, max_length=255)
     tags = TaggableManager(blank=True)
 
     # social network info
