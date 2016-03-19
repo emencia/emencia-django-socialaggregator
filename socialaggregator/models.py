@@ -70,13 +70,13 @@ class RessourceQuerySet(models.query.QuerySet):
 
 
 class RessourceManager(models.Manager):
-    def get_query_set(self):
+    def get_queryset(self):
         return RessourceQuerySet(self.model, using=self._db)
 
 
 class ActivatedManager(RessourceManager):
-    def get_query_set(self):
-        queryset = super(ActivatedManager, self).get_query_set()
+    def get_queryset(self):
+        queryset = super(ActivatedManager, self).get_queryset()
         return queryset.filter(activate=True)
 
 
